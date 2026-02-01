@@ -260,6 +260,13 @@
             border-radius: 25px;
             box-shadow: 0 15px 40px rgba(0,0,0,0.1);
         }
+
+        /* 🔥 НОВЫЕ РАЗМЕРЫ - ПОКРУПНЕЕ ДЛЯ ВСЕХ ПЛАТФОРМ */
+        .card img {
+            width: 280px !important;
+            height: auto !important;
+            border-radius: 20px;
+        }
         
         /* ========================================
            МОБИЛЬНАЯ АДАПТАЦИЯ
@@ -324,6 +331,12 @@
                 padding: 16px !important;
                 font-size: 16px !important;
             }
+
+            /* МОБИЛЬНЫЙ РАЗМЕР - ПОКРУПНЕЕ */
+            .card img {
+                width: 240px !important;
+                height: auto !important;
+            }
         }
         
         @media (max-width: 480px) {
@@ -338,6 +351,12 @@
             .photo-container img {
                 width: 260px !important;
                 height: 320px !important;
+            }
+
+            /* МАЛЕНЬКИЕ ЭКРАНЫ - ТОЖЕ ПОКРУПНЕЕ */
+            .card img {
+                width: 220px !important;
+                height: auto !important;
             }
         }
     </style>
@@ -427,7 +446,7 @@
             <img src="img/tanya.jpg" width="150" height="200" alt="Организатор свадьбы" style="border-radius: 20px;">
             <p style="margin-bottom: 20px;">По всем вопросам, связанным с мероприятием, вы можете обратиться к нашему организатору</p>
             <p style="font-size: 24px; margin: 25px 0;"><strong>ТАТЬЯНА</strong><br>8(917)956-41-23</p>    
-            <a href="https://t.me/@Tanuysha89" target="_blank" class="telegram-btn" rel="noopener noreferrer">
+            <a href="https://t.me/Tanuysha89" target="_blank" class="telegram-btn" rel="noopener noreferrer">
                 <img src="img/telega.jpg" width="60" height="60" alt="Telegram" style="border-radius: 50%;">
             </a>     
         </div>
@@ -487,7 +506,7 @@
             <h2 style="color: #8b0000; font-size: 28px;">Ждём вас!</h2>
             <p style="font-size: 24px; margin: 25px 0;">С любовью</p>
             <h3 style="color: #8b0000; font-size: 32px;">ДЕНИС & ИРИНА</h3>
-            <img src="img/end.JPG" width="200" height="300" alt="Фото пары" style="border-radius: 20px;">
+            <img src="img/end.JPG" alt="Фото пары">
         </div>
     </div>
 
@@ -524,7 +543,17 @@
         // Форма RSVP
         document.getElementById('rsvpForm').addEventListener('submit', function(e) {
             e.preventDefault();
-            alert('✅ Спасибо за подтверждение! Мы получили вашу заявку и скоро с вами свяжемся. 💕');
+            // ВИЗУАЛЬНАЯ ОБРАТНАЯ СВЯЗЬ
+            const btn = this.querySelector('button[type="submit"]');
+            btn.innerHTML = '✅ Отправляем...';
+            btn.disabled = true;
+            
+            setTimeout(() => {
+                alert('✅ Спасибо за подтверждение! Мы получили вашу заявку и скоро с вами свяжемся. 💕');
+                this.reset();
+                btn.innerHTML = 'Отправить подтверждение';
+                btn.disabled = false;
+            }, 1000);
         });
     </script>
 </body>
